@@ -1,21 +1,28 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { PrismaService } from './prisma.service';
+import { UsuarioModule } from './usuario/usuario.module';
 
-
-//Decorador
+// DECORADOR -> Funciones
 @Module({
-  imports: [//Arreglo de módulos importados
-
-  ],
-  controllers: [  //Controladores de este módulo
-      AppController
-  ],
-  providers: [  //Servicios de este módulo
-      AppService
-  ],
-  exports:[ //Servicios EXPORTADOS(que se pueden usar fuera de este modulo)
-     AppService
-  ],
+    imports: [
+        // Modulos importados
+        UsuarioModule,
+    ],
+    controllers: [
+        // Controladores de este modulo
+        AppController,
+    ],
+    providers: [
+        // Servicios de este modulo
+        AppService,
+        PrismaService,
+    ],
+    exports: [
+        // Servicios EXPORTADOS (que se pueden usar fuera de este modulo)
+        AppService,
+    ],
 })
-export class AppModule {}
+export class AppModule {
+}

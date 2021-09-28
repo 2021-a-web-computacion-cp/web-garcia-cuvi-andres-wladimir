@@ -7,19 +7,23 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app:any = await NestFactory.create(AppModule);
+  app.set('view engine','ejs');
+
+
+
   app.use(express.static('publico')); //servidor web estático
   app.use(cookieParser('cookie secreta XD')); //secreto cookies
   app.use(
-      //session
-      session({
-        name: 'server-session-id',
-        secret: 'Este es el mensaje secreto',
-        resave: true,
-        saveUnitialized: true,
-        cookie: { secure: false },
-        store: new FileStore(),
-      }),
+    //session
+    session({
+      name: 'server-session-id',
+      secret: 'Este es el mensaje secreto',
+      resave: true,
+      saveUnitialized: true,
+      cookie: { secure: false },
+      store: new FileStore(),
+    }),
   );
 
   await app.listen(3000); //puerto
@@ -27,8 +31,7 @@ async function bootstrap() {
 bootstrap();
 
 //Comando para ejecutar el proyecto
-  //npm run start
-
+//npm run start
 
 /*
 //TYPESCRIPT
@@ -248,7 +251,3 @@ abstract class Nombre{
 }
 
 */
-
-
-
-
