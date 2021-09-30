@@ -20,48 +20,52 @@ let AppController = class AppController {
         this.appService = appService;
     }
     addition(queryParameters, req, res) {
-        if (req.signedCookies["total"] == undefined) {
+        if (req.signedCookies['total'] == undefined) {
             res.cookie('total', 100, {
-                signed: true
+                signed: true,
             });
             res.sendStatus(200);
             return 100;
         }
         else {
-            if (req.signedCookies["total"] <= 0) {
+            if (req.signedCookies['total'] <= 0) {
                 res.cookie('total', 100, {
-                    signed: true
+                    signed: true,
                 });
-                return "Congratulation!! You won the game";
+                return 'Congratulation!! You won the game';
             }
             else {
-                let cookieValue = Number(req.signedCookies["total"]) - (Number(queryParameters.firstNumber) + Number(queryParameters.secondNumber));
+                const cookieValue = Number(req.signedCookies['total']) -
+                    (Number(queryParameters.firstNumber) +
+                        Number(queryParameters.secondNumber));
                 res.cookie('total', cookieValue, {
-                    signed: true
+                    signed: true,
                 });
                 return cookieValue;
             }
         }
     }
     sub(bodyParameters, res, req, header) {
-        if (req.signedCookies["total"] == undefined) {
+        if (req.signedCookies['total'] == undefined) {
             res.cookie('total', 100, {
-                signed: true
+                signed: true,
             });
-            res.header('result', "100");
+            res.header('result', '100');
             return 100;
         }
         else {
-            if (req.signedCookies["total"] <= 0) {
+            if (req.signedCookies['total'] <= 0) {
                 res.cookie('total', 100, {
-                    signed: true
+                    signed: true,
                 });
                 return 'Congratulation!! You won the game';
             }
             else {
-                let cookieValue = Number(req.signedCookies["total"]) - (Number(bodyParameters.firstNumber) - Number(bodyParameters.secondNumber));
+                const cookieValue = Number(req.signedCookies['total']) -
+                    (Number(bodyParameters.firstNumber) -
+                        Number(bodyParameters.secondNumber));
                 res.cookie('total', cookieValue, {
-                    signed: true
+                    signed: true,
                 });
                 res.header('result', cookieValue.toString());
                 return cookieValue;
@@ -69,46 +73,48 @@ let AppController = class AppController {
         }
     }
     mult(params, req, res) {
-        if (req.signedCookies["total"] == undefined) {
+        if (req.signedCookies['total'] == undefined) {
             res.cookie('total', 100, {
-                signed: true
+                signed: true,
             });
             return 100;
         }
         else {
-            if (req.signedCookies["total"] <= 0) {
+            if (req.signedCookies['total'] <= 0) {
                 res.cookie('total', 100, {
-                    signed: true
+                    signed: true,
                 });
                 return 'Congratulation!! You won the game';
             }
             else {
-                let cookieValue = Number(req.signedCookies["total"]) - (Number(params.firstNumber) * Number(params.secondNumber));
+                const cookieValue = Number(req.signedCookies['total']) -
+                    Number(params.firstNumber) * Number(params.secondNumber);
                 res.cookie('total', cookieValue, {
-                    signed: true
+                    signed: true,
                 });
                 return cookieValue;
             }
         }
     }
     div(params, req, res) {
-        if (req.signedCookies["total"] == undefined) {
+        if (req.signedCookies['total'] == undefined) {
             res.cookie('total', 100, {
-                signed: true
+                signed: true,
             });
             return 100;
         }
         else {
-            if (req.signedCookies["total"] <= 0) {
+            if (req.signedCookies['total'] <= 0) {
                 res.cookie('total', 100, {
-                    signed: true
+                    signed: true,
                 });
                 return 'Congratulation!! You won the game';
             }
             else {
-                let cookieValue = Number(req.signedCookies["total"]) - (Number(params.firstNumber) / Number(params.secondNumber));
+                const cookieValue = Number(req.signedCookies['total']) -
+                    Number(params.firstNumber) / Number(params.secondNumber);
                 res.cookie('total', cookieValue, {
-                    signed: true
+                    signed: true,
                 });
                 return cookieValue;
             }

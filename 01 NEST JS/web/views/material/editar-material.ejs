@@ -1,0 +1,101 @@
+<%- include('../comunes/cabecera') %>
+
+<h1>Editar Material de Construcción</h1>
+<div class="container">
+
+    <% const existeMaterial = typeof datos.mensaje !== 'undefined' %>
+    <%  if(existeMaterial) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= datos.mensaje %>
+        </div>
+    <%} %>
+
+    <!--    DESPLEGAR DATOS ACTUALES-->
+    <div>
+        <h4 style="color: blue">Datos actuales</h4>
+        <span class="border border-info">
+            NOMBRE: <%= datos.material.nombre%>;
+            MARCA: <%= datos.material.marca%>;
+            PRECIO: <%= datos.material.precio%>
+            TIPO:  <%= datos.material.tipo%>
+            STOCK <%= datos.material.stock%>;
+        </span>
+    </div>
+    <br>
+    <form style="padding: 10px" class="border border-dark" action='/material/editar-material-formulario/<%=datos.material.id%>' method="post">
+
+        <div class="mb-3">
+            <label for="nombre" class="form-label"> Nombre </label>
+            <input placeholder="Ej: Cemento"
+                   type="text"
+                   name="nombre"
+                   class="form-control"
+                   id="nombre"
+                   aria-describedby="ayudaNombre"
+                   required>
+            <div id="ayudaNombre" class="form-text">
+                Ingrese el nombre.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="marca" class="form-label"> Marca </label>
+            <input placeholder="Ej: Selva Alegre"
+                   type="text"
+                   name="marca"
+                   class="form-control"
+                   id="marca"
+                   aria-describedby="ayudamarca"
+                   required>
+            <div id="ayudamarca" class="form-text">
+                Ingrese la marca.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label"> Precio ($) </label>
+            <input placeholder="Ej: 15.99"
+                   type="number"
+                   step="0.01"
+                   name="precio"
+                   class="form-control"
+                   id="precio"
+                   aria-describedby="ayudaprecio"
+                   required>
+            <div id="ayudaprecio" class="form-text">
+                Ingrese el precio.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="tipo" class="form-label"> Tipo </label>
+            <input placeholder="Ej: Pétreo"
+                   type="text"
+                   name="tipo"
+                   class="form-control"
+                   id="tipo"
+                   aria-describedby="ayudatipo"
+                   required>
+            <div id="ayudatipo" class="form-text">
+                Ingrese el tipo.
+            </div>
+        </div>
+
+
+        <div class="mb-3">
+            <label>
+                <input type="checkbox"
+                       name="stock"
+                       id="stock"
+                >
+                Stock
+            </label>
+
+            <div id="ayudastock" class="form-text">
+                Ingrese el stock, si hay o no.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Actualizar</button>
+    </form>
+</div>
+<br>
+
+
+<%- include('../comunes/footer') %>
